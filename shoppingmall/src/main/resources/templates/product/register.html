@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragment/common :: head('상품 등록')">
+
+</head>
+
+<body>
+
+    <!-- Topbar Start -->
+    <div th:replace="fragment/common :: topbar"></div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                    <h6 class="m-0">카테고리</h6>
+                    <i class="fa fa-angle-down text-dark"></i>
+                </a>
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+                    <div th:replace="fragment/common :: category"></div>
+                </nav>
+            </div>
+            <div class="col-lg-9">
+                <div th:replace="fragment/common :: navbar"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <main role="main" class="container">
+        <div class="row g-5">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">상품 등록</h4>
+
+                <form class="product-register" th:action="@{/product/register}" method="post">
+                    <div class="col-4 mb-3">
+                        <label for="category" class="form-label">카테고리</label>
+                        <select class="form-select" id="category" th:name="category" th:onchange="categoryChange(category.value)" required>
+                            <option value=""></option>
+                            <option value="지갑">지갑</option>
+                            <option value="벨트">벨트</option>
+                        </select>
+                    </div>
+                    <input type="hidden" id="subCategory" name="subCategory">
+                    <div class="col-4 mb-3">
+                        <label for="subCategoryId" class="form-label">세부 카테고리</label>
+                        <select class="form-select" id="subCategoryId" th:name="subCategoryId" th:onchange="subCategoryChange()" required>
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="name" class="form-label">이름</label>
+                        <input type="text" class="form-control" id="name" th:name="name" required>
+                    </div>
+                    <div class="col-2 mb-3">
+                        <label for="price" class="form-label">가격</label>
+                        <input type="text" class="form-control" id="price" th:name="price" required>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <label for="color" class="form-label">색상</label>
+                        <input type="text" class="form-control" id="color" placeholder="'상품 옵션 등록'에서 가능" disabled>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <label for="size" class="form-label">사이즈</label>
+                        <input type="text" class="form-control" id="size" placeholder="'상품 옵션 등록'에서 가능" disabled>
+                    </div>
+                    <h6 class="text-truncate mb-3">상품 메인 이미지</h6>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control mainImageFiles1" id="mainInputGroupFile" multiple>
+                        <label for="mainInputGroupFile" class="input-group-text mainImageFiles2">Upload</label>
+                    </div>
+
+                    <div class="mainBox">
+
+                    </div>
+
+                    <style>
+                        .mainUploadResult {
+                            width: 100%;
+                            background-color: gray;
+                            margin-top: 10px;
+                        }
+
+                        .mainUploadResult ul {
+                            display: flex;
+                            flex-flow: row;
+                            justify-content: center;
+                            align-items: center;
+                            vertical-align: top;
+                            overflow: auto;
+                        }
+
+                        .mainUploadResult ul li {
+                            list-style: none;
+                            padding: 10px;
+                            margin-left: 2em;
+                        }
+
+                        .mainUploadResult ul li img {
+                            width: 100px;
+                        }
+                    </style>
+
+                    <div class="mainUploadResult">
+                        <ul>
+
+                        </ul>
+                    </div>
+
+                    <h6 class="text-truncate mb-3">상품 설명 이미지</h6>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control detailImageFiles1" id="detailInputGroupFile" multiple>
+                        <label for="detailInputGroupFile" class="input-group-text detailImageFiles2">Upload</label>
+                    </div>
+
+                    <div class="detailBox">
+
+                    </div>
+
+                    <style>
+                        .detailUploadResult {
+                            width: 100%;
+                            background-color: gray;
+                            margin-top: 10px;
+                        }
+
+                        .detailUploadResult ul {
+                            display: flex;
+                            flex-flow: row;
+                            justify-content: center;
+                            align-items: center;
+                            vertical-align: top;
+                            overflow: auto;
+                        }
+
+                        .detailUploadResult ul li {
+                            list-style: none;
+                            padding: 10px;
+                            margin-left: 2em;
+                        }
+
+                        .detailUploadResult ul li img {
+                            width: 100px;
+                        }
+                    </style>
+
+                    <div class="detailUploadResult">
+                        <ul>
+
+                        </ul>
+                    </div>
+
+                    <button class="btn btn-primary uploadSubmit" type="submit">등록하기</button>
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Footer Start -->
+    <div th:replace="fragment/common :: footer"></div>
+    <!-- Footer End -->
+
+
+    <!-- JavaScript -->
+    <div th:replace="fragment/common :: js"></div>
+
+
+    <script>
+
+        function categoryChange(category) {
+
+            if (category == "지갑") {
+                options = new Array("", "반지갑", "장지갑", "카드지갑");
+                values = new Array("", "1", "2", "3");
+            } else if (category == "벨트") {
+                options = new Array("", "남성벨트", "여성벨트");
+                values = new Array("", "4", "5");
+            }
+
+            //셀렉트 박스의 기본 옵션들을 초기화시킨다.
+            for (i = 0; i < category.length; i++) {
+                subCategoryId.options[i] = null;
+            }
+
+            // 두번째 셀렉트 박스에 값을 뿌려준다.
+            for (i = 0; i < options.length; i++) {
+                subCategoryId.options[i] = new Option(options[i], values[i]);
+            }
+
+        }
+
+        function subCategoryChange() {
+            var target = document.getElementById("subCategoryId");
+            document.getElementById("subCategory").value = target.options[target.selectedIndex].text;
+        }
+
+    </script>
+
+    <script>
+
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
+        $(document).ready(function(e) {
+
+            var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
+            var maxSize = 10485760; //10MB
+
+            function checkExtension(fileName, fileSize) {
+
+                if(fileSize >= maxSize) {
+                    alert("파일 사이즈 초과");
+                    return false;
+                }
+
+                if(regex.test(fileName)) {
+                    alert("해당 종류의 파일은 업로드할 수 없습니다.");
+                    return false;
+                }
+                return true;
+            }
+
+            $(".mainImageFiles1").on("change", function() {
+
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".mainImageFiles2").addClass("selected").html(fileName);
+
+                var formData = new FormData();
+
+                var inputFile = $(this);
+
+                var files = inputFile[0].files;
+
+                var appended = false;
+
+                for (var i=0; i<files.length; i++) {
+
+                    if(!checkExtension(files[i].name, files[i].size) ) {
+                        return false;
+                    }
+
+                    console.log(files[i]);
+                    formData.append("uploadFiles", files[i]);
+                    appended = true;
+                }
+
+                if (!appended) {return;}
+
+                for (var value of formData.values()) {
+                    console.log(value);
+                }
+
+                $.ajax({
+                    url: '/upload/imageUpload',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    type: 'POST',
+                    dataType: 'json',
+                    beforeSend : function(xhr){
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function(result) {
+                        console.log(result);
+                        mainShowResult(result);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    }
+                });
+            });
+
+            $(".detailImageFiles1").on("change", function() {
+
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".detailImageFiles2").addClass("selected").html(fileName);
+
+                var formData = new FormData();
+
+                var inputFile = $(this);
+
+                var files = inputFile[0].files;
+
+                var appended = false;
+
+                for (var i=0; i<files.length; i++) {
+
+                    if(!checkExtension(files[i].name, files[i].size) ) {
+                        return false;
+                    }
+
+                    console.log(files[i]);
+                    formData.append("uploadFiles", files[i]);
+                    appended = true;
+                }
+
+                if (!appended) {
+                    return;
+                }
+
+                for (var value of formData.values()) {
+                    console.log(value);
+                }
+
+                $.ajax({
+                    url: '/upload/imageUpload',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    type: 'POST',
+                    dataType: 'json',
+                    beforeSend : function(xhr){
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function(result) {
+                        console.log(result);
+                        detailShowResult(result);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    }
+                });
+            });
+
+            function mainShowResult(mainUploadResultArr) {
+
+                var mainUploadUL = $(".mainUploadResult ul");
+
+                var str ="";
+
+                $(mainUploadResultArr).each(function(i, obj) {
+
+                    str += "<li data-name='" + obj.fileName + "' data-path='"+obj.folderPath+"' data-uuid='"+obj.uuid+"'>";
+                    str += " <div>";
+                    str += "<button type='button' data-file=\'" + obj.imageURL + "\' "
+                    str += "class='btn-warning btn-sm'>X</button><br>";
+                    str += "<img src='/upload/display?fileName=" + obj.thumbnailURL + "'>";
+                    str += "</div>";
+                    str += "</li>";
+                });
+
+                mainUploadUL.append(str);
+            }
+
+            function detailShowResult(detailUploadResultArr) {
+
+                var detailUploadUL = $(".detailUploadResult ul");
+
+                var str ="";
+
+                $(detailUploadResultArr).each(function(i, obj) {
+
+                    str += "<li data-name='" + obj.fileName + "' data-path='"+obj.folderPath+"' data-uuid='"+obj.uuid+"'>";
+                    str += " <div>";
+                    str += "<button type='button' data-file=\'" + obj.imageURL + "\' "
+                    str += "class='btn-warning btn-sm'>X</button><br>";
+                    str += "<img src='/upload/display?fileName=" + obj.thumbnailURL + "'>";
+                    str += "</div>";
+                    str += "</li>";
+                });
+
+                detailUploadUL.append(str);
+            }
+
+            $(".mainUploadResult ").on("click", "li button", function(e){
+
+                console.log("delete file");
+
+                var targetFile = $(this).data("file");
+
+                var targetLi = $(this).closest("li");
+
+                $.ajax({
+                    url: '/upload/removeFile',
+                    data: {fileName: targetFile},
+                    dataType:'text',
+                    type: 'POST',
+                    beforeSend : function(xhr){
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function(result){
+                        alert(result);
+
+                        targetLi.remove();
+                    }
+                });
+            });
+
+            $(".detailUploadResult ").on("click", "li button", function(e){
+
+                console.log("delete file");
+
+                var targetFile = $(this).data("file");
+
+                var targetLi = $(this).closest("li");
+
+                $.ajax({
+                    url: '/upload/removeFile',
+                    data: {fileName: targetFile},
+                    dataType:'text',
+                    type: 'POST',
+                    beforeSend : function(xhr){
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function(result){
+                        alert(result);
+
+                        targetLi.remove();
+                    }
+                });
+            });
+
+            $(".uploadSubmit").on("click", function(e) {
+                e.preventDefault();
+
+                var mainStr = "";
+                var detailStr = "";
+
+                $(".mainUploadResult li").each(function(i,obj){
+                    var target = $(obj);
+
+                    mainStr += "<input type='hidden' name='productMainImageDtoList["+i+"].path' value='"+target.data('path')+"'>";
+
+                    mainStr += "<input type='hidden' name='productMainImageDtoList["+i+"].uuid' value='"+target.data('uuid')+"'>";
+
+                    mainStr += "<input type='hidden' name='productMainImageDtoList["+i+"].imgName' value='"+target.data('name') +"'>";
+
+                });
+
+                $(".mainBox").html(mainStr);
+
+                $(".detailUploadResult li").each(function(i,obj){
+                    var target = $(obj);
+
+                    detailStr += "<input type='hidden' name='productDetailImageDtoList["+i+"].path' value='"+target.data('path')+"'>";
+
+                    detailStr += "<input type='hidden' name='productDetailImageDtoList["+i+"].uuid' value='"+target.data('uuid')+"'>";
+
+                    detailStr += "<input type='hidden' name='productDetailImageDtoList["+i+"].imgName' value='"+target.data('name') +"'>";
+
+                });
+
+                $(".detailBox").html(detailStr);
+
+                $("form").submit();
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

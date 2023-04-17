@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragment/common :: head('예시')">
+
+</head>
+
+<body>
+
+    <!-- Topbar Start -->
+    <div th:replace="fragment/common :: topbar"></div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                    <h6 class="m-0">카테고리</h6>
+                    <i class="fa fa-angle-down text-dark"></i>
+                </a>
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+                    <div th:replace="fragment/common :: category"></div>
+                </nav>
+            </div>
+            <div class="col-lg-9">
+                <div th:replace="fragment/common :: navbar"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Checkout</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Checkout Start -->
+    <div class="container-fluid pt-5">
+        <form id="purchase" th:action="@{/orders/form}" method="post">
+            <div class="row px-xl-5">
+                <div class="col-lg-8">
+                    <div class="mb-4">
+                        <input type="hidden" th:id="num" th:name="num" th:value="${num}">
+                        <h4 class="font-weight-semi-bold mb-4">주문자 정보</h4>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>이름</label>
+                                <input class="form-control" type="text" th:id="ordererName" th:name="ordererName" th:value="${user.name}">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>이메일</label>
+                                <input class="form-control" type="text" th:id="ordererEmail" th:name="ordererEmail" th:value="${user.email}">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>연락처</label>
+                                <input class="form-control" type="text" th:id="ordererPhone" th:name="ordererPhone" th:value="${user.phone}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-weight-semi-bold mb-4">배송지 정보</h4>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>이름</label>
+                                <input class="form-control" type="text" th:name="deliveryName" th:value="${user.name}">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>우편번호</label>
+                                <input class="form-control" type="text" th:id="deliveryPostalCode" th:name="deliveryPostalCode" th:value="${user.postalCode}">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>주소</label>
+                                <input class="form-control" type="text" placeholder="주소" th:id="deliveryAddress" th:name="deliveryAddress" th:value="${user.address}">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>참고주소</label>
+                                <input class="form-control" type="text" placeholder="참고주소" th:id="deliveryExtraAddress" th:name="deliveryExtraAddress" th:value="${user.extraAddress}">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>상세주소</label>
+                                <input class="form-control" type="text" placeholder="상세주소" th:id="deliveryDetailAddress" th:name="deliveryDetailAddress" th:value="${user.detailAddress}">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>연락처</label>
+                                <input class="form-control" type="text" th:name="deliveryPhone" th:value="${user.phone}">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>배송요청사항</label>
+                                <input class="form-control" type="text" th:name="deliveryRequest">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">결제정보</h4>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="font-weight-medium mb-3">상품</h5>
+                            <div class="d-flex justify-content-between" th:each="cart : ${cartResponseDtoList}">
+                                <p th:text="${cart.goods.product.name}">상품정보</p>
+                                <p th:text="${cart.cartQuantity + '개'}">개수</p>
+                                <p th:text="${cart.cartPrice + '원'}">주문금액</p>
+                            </div>
+                            <hr class="mt-0">
+                            <div class="d-flex justify-content-between mb-3 pt-1">
+                                <h6 class="font-weight-medium">총 주문금액</h6>
+                                <h6 class="font-weight-medium" th:text="${totalPrice + '원'}">원</h6>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-medium">배송비</h6>
+                                <h6 class="font-weight-medium">무료</h6>
+                            </div>
+                        </div>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <div class="d-flex justify-content-between mt-2">
+                                <h5 class="font-weight-bold">총 결제금액</h5>
+                                <h5 class="font-weight-bold" th:text="${totalPrice + '원'}">원</h5>
+                                <input type="hidden" th:id="totalPrice" th:name="totalPrice" th:value="${totalPrice}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                                    <label class="custom-control-label" for="paypal">Paypal</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                    <label class="custom-control-label" for="directcheck">Direct Check</label>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                    <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <button type="button" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" th:onclick="requestPay(this.form)">결제하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Checkout End -->
+
+
+    <!-- Footer Start -->
+    <div th:replace="fragment/common :: footer"></div>
+    <!-- Footer End -->
+
+
+    <!-- JavaScript -->
+    <div th:replace="fragment/common :: js"></div>
+
+
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+
+
+    <script>
+        function requestPay() {
+            IMP.init('imp89950763'); // 가맹점 식별코드
+            IMP.request_pay({
+                pg : 'html5_inicis',
+                pay_method : 'card',
+                merchant_uid: document.getElementById("num").value, // 상점에서 관리하는 주문 번호
+                name : '쇼핑몰 주문',
+                amount : document.getElementById("totalPrice").value,
+                buyer_name : document.getElementById("ordererName").value,
+                buyer_email : document.getElementById("ordererEmail").value,
+                buyer_tel : document.getElementById("ordererPhone").value,
+                buyer_postcode : document.getElementById("deliveryPostalCode").value,
+                buyer_addr : document.getElementById("deliveryAddress").value + ' ' + document.getElementById("deliveryExtraAddress").value + ' ' + document.getElementById("deliveryDetailAddress").value
+            }, function(rsp) {
+                if ( rsp.success ) {
+                    //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+                    $.ajax({
+                        url: "/orders/form", //cross-domain error가 발생하지 않도록 주의해주세요
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            imp_uid : rsp.imp_uid
+                            //기타 필요한 데이터가 있으면 추가 전달
+                        }
+                    }).done(function(data) {
+                        //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+                        if ( everythings_fine ) {
+                            var msg = '결제가 완료되었습니다.';
+                            msg += '\n고유ID : ' + rsp.imp_uid;
+                            msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                            msg += '\n결제 금액 : ' + rsp.paid_amount;
+                            msg += '카드 승인번호 : ' + rsp.apply_num;
+
+                            alert(msg);
+                        } else {
+                            //[3] 아직 제대로 결제가 되지 않았습니다.
+                            //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+                        }
+                    });
+                    location.href='list';
+                    document.getElementById("purchase").submit();
+                } else {
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '\n에러내용 : ' + rsp.error_msg;
+
+                    alert(msg);
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

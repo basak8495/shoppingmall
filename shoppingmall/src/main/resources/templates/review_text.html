@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    new랑 Noarg랑은 다른가?
+
+    product 조그맣게 리스트 출력할때는 Noarg 필요없더니 크게하려니 Noarg Allarg 필요해졌음
+
+    ProductResponseDto에 Noarg랑 Allarg를 안쓰면 Builder 에러 뜨는데 이유는 모르겠음
+
+    productMainImage 엔티티 순서 맞춰주기 service에도
+
+
+    // 배운것
+
+    ProductResponseDto의 Getter를 없애면 지갑 list 로 넘어는 가는데 화면 작동도안하고 product.name값도 안나온다.
+
+    ProductRequestDto와 ProductImageDto에 Setter을 추가해야 db로 값이 넘어간다.
+
+    (아마) ajax를 쓰면 post로 넘어가서 form(또는 reqository로 인해 DB추가)이 하나 더 만들어지는거 같고
+    js에서 그냥 변수 쓰면 html form과 연동되는것 같다.
+
+    ProductImageDto에 Noarg와 Allarg를 추가해야 상품등록이 된다.
+
+    Goods에 Noarg와 Allarg를 추가해야 detail.html에 뜬다
+
+    template might not exist or might not be accessible by any of the configured Template Resolvers, 500 error -> @ResponseBody로 해결
+
+    id됨 name안됨
+    $("#cartId").val();
+    $("#orderCount").val();
+
+    id됨 name안됨
+    document.getElementById("cartId").value;
+    document.getElementById("orderCount").value;
+
+    id안됨 name 안됨 (td 또는 tr찾아서 안에 있는 요소 찾는)
+    $(this).parent().find(".cartId").val();
+    $(this).parent().find(".orderCount").val();
+
+    // 잠시
+    th:text="${#numbers.formatInteger(cart.goods.product.price * cart.orderCount, 0, 'COMMA')}"
+
+</body>
+</html>
