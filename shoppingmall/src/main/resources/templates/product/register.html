@@ -338,7 +338,7 @@
                 $(mainUploadResultArr).each(function(i, obj) {
 
                     str += "<li data-name='" + obj.fileName + "' data-path='"+obj.folderPath+"' data-uuid='"+obj.uuid+"'>";
-                    str += " <div>";
+                    str += "<div>";
                     str += "<button type='button' data-file=\'" + obj.imageURL + "\' "
                     str += "class='btn-warning btn-sm'>X</button><br>";
                     str += "<img src='/upload/display?fileName=" + obj.thumbnailURL + "'>";

@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -47,6 +48,9 @@ public class ProductController {
 
     @Autowired
     private ReviewService reviewService;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @GetMapping("/add_option_color")
     public String getProductAddOptionColor() {
@@ -144,6 +148,12 @@ public class ProductController {
         List<Goods> goodsList = goodsRepository.findAll();
         model.addAttribute("goodsList", goodsList);
 
+        List<ReviewResonseDto> reviewResonseDtoList = reviewService.getReviewList(product);
+        model.addAttribute("reviewResponseDto", reviewResonseDtoList);
+
+        int reviewCount = reviewResonseDtoList.size();
+        model.addAttribute("reviewCount", reviewCount);
+
         return "product/detail";
     }
 
@@ -152,7 +162,9 @@ public class ProductController {
 
         reviewService.reviewRegister(reviewRequestDto);
 
-        return "redirect:/product/list";
+        Long productId = reviewRequestDto.getProduct().getId();
+
+        return "redirect:/product/detail?id="+productId;
     }
 
 }

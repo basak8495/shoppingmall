@@ -161,7 +161,6 @@ public class ProductService {
         }
 
         return productResponseDtoList;
-
     }
 
 /*    public PageResultDto<ProductResponseDto, Object[]> getList(PageRequestDto pageRequestDto) {

@@ -1,15 +1,12 @@
 package com.project.shoppingmall.product;
 
 import com.project.shoppingmall.account.User;
-import com.project.shoppingmall.goods.Goods;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class ReviewRequestDto {
-
-    private Long id;
 
     private Integer starScore;
 
