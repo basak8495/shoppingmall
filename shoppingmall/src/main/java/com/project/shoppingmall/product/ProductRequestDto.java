@@ -1,7 +1,7 @@
 package com.project.shoppingmall.product;
 
-import com.project.shoppingmall.ProductImage.ProductDetailImageDto;
-import com.project.shoppingmall.ProductImage.ProductMainImageDto;
+import com.project.shoppingmall.product_image.ProductDetailImageDto;
+import com.project.shoppingmall.product_image.ProductMainImageDto;
 import lombok.Getter;
 import lombok.Setter;
 

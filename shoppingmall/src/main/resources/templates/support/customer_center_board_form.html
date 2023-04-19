@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragment/common :: head('글 작성')">
+
+</head>
+
+<body>
+
+    <!-- Topbar Start -->
+    <div th:replace="fragment/common :: topbar"></div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                    <h6 class="m-0">카테고리</h6>
+                    <i class="fa fa-angle-down text-dark"></i>
+                </a>
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+                    <div th:replace="fragment/common :: category"></div>
+                </nav>
+            </div>
+            <div class="col-lg-9">
+                <div th:replace="fragment/common :: navbar"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <div class="container">
+        <h1>게시판</h1>
+        <form action="#" th:action="@{/support/customer_center_board_form}" th:object="${customerBoardRequestDto}" method="post">
+            <!--            <input type="hidden" th:field="*{id}"> &lt;!&ndash; 글 수정 &ndash;&gt;-->
+
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" th:field="*{title}"
+                       th:classappend="${#fields.hasErrors('title')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
+                    제목 에러 메시지
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="content">내용</label>
+                <textarea class="form-control" id="content" rows="3" th:field="*{content}"
+                          th:classappend="${#fields.hasErrors('content')} ? 'is-invalid'"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">
+                    내용 에러 메시지
+                </div>
+            </div>
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-secondary">확인</button>
+                <a class="btn btn-secondary" th:href="@{/support/customer_center}">취소</a>
+                <!--<button type="submit" class="btn btn-secondary"
+                        sec:authorize="hasRole('ROLE_USER')" th:onclick="|deleteBoard(*{id})|">삭제</button>-->
+            </div>
+
+        </form>
+    </div>
+
+
+    <!-- Footer Start -->
+    <div th:replace="fragment/common :: footer"></div>
+    <!-- Footer End -->
+
+
+    <!-- JavaScript -->
+    <div th:replace="fragment/common :: js"></div>
+
+</body>
+
+</html>

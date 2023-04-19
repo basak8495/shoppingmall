@@ -3,7 +3,7 @@ package com.project.shoppingmall.cart;
 
 import com.project.shoppingmall.account.User;
 import com.project.shoppingmall.goods.Goods;
-import com.project.shoppingmall.ProductImage.ProductMainImageDto;
+import com.project.shoppingmall.product_image.ProductMainImageDto;
 import lombok.*;
 
 import java.util.ArrayList;

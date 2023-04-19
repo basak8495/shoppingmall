@@ -1,4 +1,4 @@
-package com.project.shoppingmall.ProductImage;
+package com.project.shoppingmall.product_image;
 
 import com.project.shoppingmall.product.Product;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDetailImage {
+public class ProductMainImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

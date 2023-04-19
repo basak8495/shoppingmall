@@ -1,4 +1,4 @@
-package com.project.shoppingmall.ProductImage;
+package com.project.shoppingmall.product_image;
 
 import lombok.*;
 
@@ -10,7 +10,7 @@ import java.net.URLEncoder;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductMainImageDto {
+public class ProductDetailImageDto {
 
     private String path;
 

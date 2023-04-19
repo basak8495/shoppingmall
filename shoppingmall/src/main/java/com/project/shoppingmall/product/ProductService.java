@@ -1,19 +1,15 @@
 package com.project.shoppingmall.product;
 
-import com.project.shoppingmall.ProductImage.*;
+import com.project.shoppingmall.product_image.*;
 import com.project.shoppingmall.product_option.ProductColor;
 import com.project.shoppingmall.product_option.ProductColorRepository;
 import com.project.shoppingmall.product_option.ProductSize;
 import com.project.shoppingmall.product_option.ProductSizeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service

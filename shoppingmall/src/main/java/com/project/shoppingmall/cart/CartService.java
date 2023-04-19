@@ -1,8 +1,8 @@
 package com.project.shoppingmall.cart;
 
-import com.project.shoppingmall.ProductImage.ProductMainImage;
-import com.project.shoppingmall.ProductImage.ProductMainImageDto;
-import com.project.shoppingmall.ProductImage.ProductMainImageRepository;
+import com.project.shoppingmall.product_image.ProductMainImage;
+import com.project.shoppingmall.product_image.ProductMainImageDto;
+import com.project.shoppingmall.product_image.ProductMainImageRepository;
 import com.project.shoppingmall.account.User;
 import com.project.shoppingmall.account.UserRepository;
 import com.project.shoppingmall.product.*;

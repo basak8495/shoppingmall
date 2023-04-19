@@ -1,4 +1,4 @@
-package com.project.shoppingmall.ProductImage;
+package com.project.shoppingmall.product_image;
 
 import com.project.shoppingmall.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

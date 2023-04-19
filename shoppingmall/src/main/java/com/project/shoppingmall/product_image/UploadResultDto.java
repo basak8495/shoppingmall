@@ -1,4 +1,4 @@
-package com.project.shoppingmall.ProductImage;
+package com.project.shoppingmall.product_image;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
