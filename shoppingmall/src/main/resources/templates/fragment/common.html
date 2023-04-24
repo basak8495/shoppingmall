@@ -52,6 +52,8 @@
                     <a class="text-dark" th:href="@{/product/register}">상품 등록</a>
                     <span class="text-muted px-2">|</span>
                     <a class="text-dark" th:href="@{/product/option_register_list}">상품 옵션 등록</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" th:href="@{/orders/all_list}">주문 내역 관리</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
@@ -93,13 +95,13 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="" class="btn border">
-                    <i class="fas fa-heart text-primary"></i>
-                    <span class="badge">0</span>
-                </a>
                 <a th:href="@{/cart/list}" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span class="badge">장바구니</span>
+                </a>
+                <a th:href="@{/orders/list}" class="btn border">
+                    <i class="fa fa-truck text-primary"></i>
+                    <span class="badge">주문내역</span>
                 </a>
             </div>
         </div>

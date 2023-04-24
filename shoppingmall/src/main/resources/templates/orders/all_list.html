@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragment/common :: head('(관리자용)주문내역')">
+
+</head>
+
+<body>
+
+    <!-- Topbar Start -->
+    <div th:replace="fragment/common :: topbar"></div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                    <h6 class="m-0">카테고리</h6>
+                    <i class="fa fa-angle-down text-dark"></i>
+                </a>
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+                    <div th:replace="fragment/common :: category"></div>
+                </nav>
+            </div>
+            <div class="col-lg-9">
+                <div th:replace="fragment/common :: navbar"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <main role="main" class="container">
+        <h4>주문내역</h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">주문일자</th>
+                <th scope="col">주문번호</th>
+                <th scope="col">주문자</th>
+                <th scope="col">상품정보</th>
+                <th scope="col">개수</th>
+                <th scope="col">주문금액</th>
+                <th scope="col">주문처리상태</th>
+                <th scope="col">취소/교환/반품</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ordersGoods : ${ordersGoodsResponseDtoList}">
+                <td th:text="${ordersGoods.orders.date}">주문일자</td>
+                <td><a th:text="${ordersGoods.orders.num}" th:href="@{/orders/modify/{id}(id=${ordersGoods.id})}">주문번호</a></td>
+                <td th:text="${ordersGoods.orders.ordererName}">주문자</td>
+                <td th:text="${'상품이름: ' + ordersGoods.goods.product.name + ' 색상: ' + ordersGoods.goods.productColor.color + ' 사이즈: ' + ordersGoods.goods.productSize.size}">상품정보</td>
+                <td th:text="${ordersGoods.ordersQuantity}">개수</td>
+                <td th:text="${ordersGoods.ordersPrice}">주문금액</td>
+                <td th:text="${ordersGoods.state}">주문처리상태</td>
+                <td th:text="${ordersGoods.claim}">취소/교환/반품</td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Footer Start -->
+    <div th:replace="fragment/common :: footer"></div>
+    <!-- Footer End -->
+
+
+    <!-- JavaScript -->
+    <div th:replace="fragment/common :: js"></div>
+
+</body>
+
+</html>

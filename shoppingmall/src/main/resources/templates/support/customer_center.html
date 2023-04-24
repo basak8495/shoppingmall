@@ -43,8 +43,8 @@
                 <thead>
                 <tr>
                     <th>
-                        <label calss="checkbox-inline">
-                            <input type="checkbox" id="allCheckBox" onclick="allChecked()">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="allCheck" onclick="allCheckBox()">
                         </label>
                     </th>
                     <th scope="col">글번호</th>
@@ -53,10 +53,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="board : ${customerBoard}">
+                <tr th:each="board : ${customerBoardList}">
                     <td>
                         <label class="checkbox-inline">
-                            <input type="checkbox" class="chk" name="chk" onclick="chkClicked()" th:value="${board.id}">
+                            <input type="checkbox" class="check" name="check" onclick="checkBox()" th:value="${board.id}">
                         </label>
                     </td>
                     <td th:text="${board.id}">글번호</td>
@@ -89,7 +89,7 @@
             <div class="text-right">
                 <a type="button" class="btn btn-secondary" th:href="@{/support/customer_center_board_form}">쓰기</a>
                 <!--<a class="btn btn-secondary" href="javascript:boardDelete();">삭제</a>-->
-                <button th:onclick="boardDelete(this.form)" class="w-100 btn btn-primary btn-lg" type="button">삭제하기</button>
+                <button th:onclick="boardDelete()" class="w-100 btn btn-primary btn-lg" type="button">삭제하기</button>
             </div>
         </form>
     </div>
@@ -102,6 +102,95 @@
 
     <!-- JavaScript -->
     <div th:replace="fragment/common :: js"></div>
+
+
+    <script>
+
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
+        function allCheckBox() { // 모두 체크 버튼
+
+            const checkbox = document.getElementById('allCheck');
+
+            const is_checked = checkbox.checked;
+
+            if(is_checked) {
+                allChecked()
+            }
+
+            else {
+                allUnChecked()
+            }
+
+        }
+
+        function allChecked() { // 모두 체크 하기
+            document.querySelectorAll(".check").forEach(function(v, i) {
+                v.checked = true;
+            });
+        }
+
+        function allUnChecked() { // 모두 체크 해제 하기
+            document.querySelectorAll(".check").forEach(function(v, i) {
+                v.checked = false;
+            });
+        }
+
+        function checkBox() { // 선택 체크 버튼
+
+            const allCount = document.querySelectorAll(".check").length;
+
+            const query = 'input[name="check"]:checked';
+            const selectedElements = document.querySelectorAll(query);
+            const selectedElementsCnt = selectedElements.length;
+
+            if(allCount == selectedElementsCnt) {
+                document.getElementById('allCheck').checked = true;
+            }
+
+            else {
+                document.getElementById('allCheck').checked = false;
+            }
+        }
+
+        function boardDelete() {
+
+            const query = 'input[name="check"]:checked';
+            const selectedElements = document.querySelectorAll(query);
+            const selectedElementsCnt = selectedElements.length;
+
+            if(selectedElementsCnt == 0) {
+                alert("삭제할 게시글을 선택해주세요.");
+                return false;
+            }
+
+            else {
+                if (confirm("정말로 삭제하시겠습니까?")) {
+
+                    var checkBoxArr = new Array();
+                    $("input:checkbox[name='check']:checked").each(function() {
+                        checkBoxArr.push($(this).val());
+                        console.log(checkBoxArr);
+                    })
+
+                    $.ajax({
+                        type : "POST",
+                        url : "/support/customer_center_board_delete",
+                        data : {
+                            checkBoxArr : checkBoxArr
+                        },
+                        beforeSend : function(xhr){
+                            xhr.setRequestHeader(header, token);
+                        }
+                    });
+
+
+                }
+            }
+        }
+
+    </script>
 
 </body>
 

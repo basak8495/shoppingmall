@@ -2,14 +2,18 @@ package com.project.shoppingmall.orders;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.shoppingmall.goods.Goods;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrdersGoods {
 
     @Id

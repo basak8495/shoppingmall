@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ReviewResonseDto {
+public class ReviewResponseDto {
 
     private Integer starScore;
 
@@ -17,7 +17,7 @@ public class ReviewResonseDto {
     private User user;
 
 
-    public ReviewResonseDto(Review review) {
+    public ReviewResponseDto(Review review) {
         this.starScore = review.getStarScore();
         this.reviewText = review.getReviewText();
         this.product = review.getProduct();

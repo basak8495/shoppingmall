@@ -1,15 +1,12 @@
 package com.project.shoppingmall.orders;
 
 import com.project.shoppingmall.account.User;
-import com.project.shoppingmall.goods.Goods;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-
 @Getter
 @Setter
-public class OrdersDto {
+public class OrdersRequestDto {
 
     private Integer totalPrice;
 
@@ -40,7 +37,7 @@ public class OrdersDto {
     private User user;
 
 
-    public Orders toEntity() {
+    public Orders dtoToEntity() {
         Orders orders = Orders.builder()
                 .totalPrice(totalPrice)
                 .date(date)
@@ -59,5 +56,4 @@ public class OrdersDto {
                 .build();
         return orders;
     }
-
 }

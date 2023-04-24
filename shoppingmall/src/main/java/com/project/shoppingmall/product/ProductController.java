@@ -18,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -148,10 +147,10 @@ public class ProductController {
         List<Goods> goodsList = goodsRepository.findAll();
         model.addAttribute("goodsList", goodsList);
 
-        List<ReviewResonseDto> reviewResonseDtoList = reviewService.getReviewList(product);
-        model.addAttribute("reviewResponseDto", reviewResonseDtoList);
+        List<ReviewResponseDto> reviewResponseDtoList = reviewService.getReviewList(product);
+        model.addAttribute("reviewResponseDto", reviewResponseDtoList);
 
-        int reviewCount = reviewResonseDtoList.size();
+        int reviewCount = reviewResponseDtoList.size();
         model.addAttribute("reviewCount", reviewCount);
 
         return "product/detail";

@@ -2,8 +2,10 @@ package com.project.shoppingmall.orders;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.shoppingmall.account.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ import java.util.List;
 @Entity
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Orders {
 
     @Id

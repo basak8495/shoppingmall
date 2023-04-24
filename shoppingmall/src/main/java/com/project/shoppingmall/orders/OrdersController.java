@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -37,6 +34,12 @@ public class OrdersController {
     @Autowired
     private OrdersService ordersService;
 
+    @Autowired
+    private OrdersRepository ordersRepository;
+
+    @Autowired
+    private OrdersGoodsRepository ordersGoodsRepository;
+
     @GetMapping("/form")
     public String getOrdersForm(Model model, Authentication authentication) {
 
@@ -57,13 +60,49 @@ public class OrdersController {
     }
 
     @PostMapping("/form")
-    public String postOrdersForm(@ModelAttribute OrdersDto ordersDto, Model model, Authentication authentication) {
+    public String postOrdersForm(@ModelAttribute OrdersRequestDto ordersRequestDto, Model model, Authentication authentication) {
 
         String username = authentication.getName();
 
-        Long ordersId = ordersService.ordersSave(username, ordersDto);
+        Long ordersId = ordersService.saveOrders(username, ordersRequestDto);
         ordersService.ordersGoodsSave(username, ordersId);
 
         return "redirect:/cart/list";
+    }
+
+    @GetMapping("/list")
+    public String getOrdersList(Model model, Authentication authentication) {
+        String username = authentication.getName();
+
+        List<OrdersResponseDto> ordersResponseDtoList = ordersService.getOrdersList(username);
+        model.addAttribute("ordersResponseDtoList", ordersResponseDtoList);
+
+        List<OrdersGoodsResponseDto> ordersGoodsResponseDtoList = ordersService.getOrdersGoodsList(username);
+        model.addAttribute("ordersGoodsResponseDtoList", ordersGoodsResponseDtoList);
+
+        return "orders/list";
+    }
+
+    @GetMapping("/all_list")
+    public String getOrdersAllList(Model model) {
+        List<OrdersGoodsResponseDto> ordersGoodsResponseDtoList = ordersService.getOrdersGoodsAllList();
+        model.addAttribute("ordersGoodsResponseDtoList", ordersGoodsResponseDtoList);
+
+        return "orders/all_list";
+    }
+
+    @GetMapping("/modify/{ordersGoodsId}")
+    public String getOrdersModify(Model model, @PathVariable("ordersGoodsId") Long ordersGooodsId) {
+        OrdersGoods ordersGoods = ordersGoodsRepository.findById(ordersGooodsId).orElse(null);
+        OrdersGoodsResponseDto ordersGoodsResponseDto = new OrdersGoodsResponseDto(ordersGoods);
+        model.addAttribute("ordersGoods", ordersGoodsResponseDto);
+        return "orders/modify";
+    }
+
+    @PutMapping("/modify")
+    public String putOrdersModify(@ModelAttribute OrdersGoodsRequestDto ordersGoodsRequestDto) {
+        ordersService.modifyOrdersGoods(ordersGoodsRequestDto);
+
+        return "redirect:/orders/all_list";
     }
 }

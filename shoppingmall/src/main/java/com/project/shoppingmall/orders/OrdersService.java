@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrdersService {
@@ -28,7 +29,7 @@ public class OrdersService {
     @Autowired
     private OrdersGoodsRepository ordersGoodsRepository;
 
-    public Long ordersSave(String username, OrdersDto ordersDto) {
+    public Long saveOrders(String username, OrdersRequestDto ordersRequestDto) {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         Calendar c1 = Calendar.getInstance();
@@ -36,10 +37,10 @@ public class OrdersService {
 
         User user = userRepository.findByUsername(username);
 
-        ordersDto.setDate(date);
-        ordersDto.setUser(user);
+        ordersRequestDto.setDate(date);
+        ordersRequestDto.setUser(user);
 
-        Orders orders = ordersDto.toEntity();
+        Orders orders = ordersRequestDto.dtoToEntity();
 
         ordersRepository.save(orders);
 
@@ -86,7 +87,7 @@ public class OrdersService {
         OrdersGoods ordersGoods = OrdersGoods.builder()
                 .ordersQuantity(cartResponseDto.getCartQuantity())
                 .ordersPrice(cartResponseDto.getCartPrice())
-                .state("주문확인중")
+                .state("주문대기")
                 .claim("-")
                 .goods(cartResponseDto.getGoods())
                 .orders(orders)
@@ -94,4 +95,54 @@ public class OrdersService {
 
         return ordersGoods;
     }
+
+    public List<OrdersResponseDto> getOrdersList(String username) {
+        User user = userRepository.findByUsername(username);
+
+        List<Orders> ordersList = ordersRepository.findByUser(user);
+
+        List<OrdersResponseDto> ordersResponseDtoList = new ArrayList<>();
+
+        for(Orders orders : ordersList) {
+            OrdersResponseDto ordersResponseDto = new OrdersResponseDto(orders);
+            ordersResponseDtoList.add(ordersResponseDto);
+        }
+
+        return ordersResponseDtoList;
+    }
+
+    public List<OrdersGoodsResponseDto> getOrdersGoodsList(String username) {
+        User user = userRepository.findByUsername(username);
+
+        List<Orders> ordersList = ordersRepository.findByUser(user);
+
+        List<OrdersGoodsResponseDto> ordersGoodsResponseDtoList = new ArrayList<>();
+
+        for(Orders orders : ordersList) {
+            List<OrdersGoods> ordersGoodsList = ordersGoodsRepository.findByOrders(orders);
+            for(OrdersGoods ordersGoods : ordersGoodsList) {
+                OrdersGoodsResponseDto ordersGoodsResponseDto = new OrdersGoodsResponseDto(ordersGoods);
+                ordersGoodsResponseDtoList.add(ordersGoodsResponseDto);
+            }
+        }
+        return ordersGoodsResponseDtoList;
+    }
+
+    public List<OrdersGoodsResponseDto> getOrdersGoodsAllList() {
+        List<OrdersGoods> ordersGoodsList = ordersGoodsRepository.findAll();
+
+        List<OrdersGoodsResponseDto> ordersGoodsResponseDtoList = new ArrayList<>();
+
+        for(OrdersGoods ordersGoods : ordersGoodsList) {
+            OrdersGoodsResponseDto ordersGoodsResponseDto = new OrdersGoodsResponseDto(ordersGoods);
+            ordersGoodsResponseDtoList.add(ordersGoodsResponseDto);
+        }
+        return ordersGoodsResponseDtoList;
+    }
+
+    public void modifyOrdersGoods(OrdersGoodsRequestDto ordersGoodsRequestDto) {
+        OrdersGoods ordersGoods = ordersGoodsRequestDto.dtoToEntity();
+        ordersGoodsRepository.save(ordersGoods);
+    }
+
 }

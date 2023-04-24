@@ -28,11 +28,4 @@ public class CartResponseDto {
 
     @Builder.Default
     private List<ProductMainImageDto> productMainImageDtoList = new ArrayList<>();
-
-
-    public CartResponseDto(Cart cart) {
-        this.cartQuantity = cart.getCartQuantity();
-        this.goods = cart.getGoods();
-        this.user = cart.getUser();
-    }
 }

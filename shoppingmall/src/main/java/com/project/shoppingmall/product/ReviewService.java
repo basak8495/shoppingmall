@@ -19,17 +19,17 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
-    public List<ReviewResonseDto> getReviewList(Product product) {
+    public List<ReviewResponseDto> getReviewList(Product product) {
 
         List<Review> reviewList = reviewRepository.findByProduct(product);
 
-        List<ReviewResonseDto> reviewResonseDtoList = new ArrayList<>();
+        List<ReviewResponseDto> reviewResponseDtoList = new ArrayList<>();
 
         for(Review review : reviewList) {
-            ReviewResonseDto reviewResonseDto = new ReviewResonseDto(review);
-            reviewResonseDtoList.add(reviewResonseDto);
+            ReviewResponseDto reviewResponseDto = new ReviewResponseDto(review);
+            reviewResponseDtoList.add(reviewResponseDto);
         }
 
-        return reviewResonseDtoList;
+        return reviewResponseDtoList;
     }
 }

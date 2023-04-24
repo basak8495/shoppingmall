@@ -1,12 +1,16 @@
 package com.project.shoppingmall.support;
 
 import com.project.shoppingmall.account.User;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CustomerBoardResonseDto {
+public class CustomerBoardResponseDto {
+
+    private Long id;
 
     private String title;
 
@@ -17,7 +21,8 @@ public class CustomerBoardResonseDto {
     private User user;
 
 
-    public CustomerBoardResonseDto(CustomerBoard customerBoard) {
+    public CustomerBoardResponseDto(CustomerBoard customerBoard) {
+        this.id = customerBoard.getId();
         this.title = customerBoard.getTitle();
         this.content = customerBoard.getContent();
         this.deleteYn = customerBoard.getDeleteYn();

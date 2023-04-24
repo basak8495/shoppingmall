@@ -42,8 +42,5 @@
     $(this).parent().find(".cartId").val();
     $(this).parent().find(".orderCount").val();
 
-    // 잠시
-    th:text="${#numbers.formatInteger(cart.goods.product.price * cart.orderCount, 0, 'COMMA')}"
-
 </body>
 </html>

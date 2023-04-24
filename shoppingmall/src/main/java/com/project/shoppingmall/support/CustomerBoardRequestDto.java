@@ -8,6 +8,8 @@ import lombok.Setter;
 @Setter
 public class CustomerBoardRequestDto {
 
+    private Long id;
+
     private String title;
 
     private String content;
@@ -19,9 +21,10 @@ public class CustomerBoardRequestDto {
 
     public CustomerBoard dtoToEntity() {
         CustomerBoard customerBoard = CustomerBoard.builder()
+                .id(id)
                 .title(title)
                 .content(content)
-                .deleteYn("N")
+                .deleteYn(deleteYn)
                 .user(user)
                 .build();
         return customerBoard;
