@@ -49,9 +49,9 @@
     <!-- Shop Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
-            <!-- Shop Sidebar Start -->
+            <!--/&lt;!&ndash; Shop Sidebar Start &ndash;&gt;
             <div class="col-lg-3 col-md-12">
-                <!-- Price Start -->
+                &lt;!&ndash; Price Start &ndash;&gt;
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
                     <form>
@@ -87,9 +87,9 @@
                         </div>
                     </form>
                 </div>
-                <!-- Price End -->
+                &lt;!&ndash; Price End &ndash;&gt;
 
-                <!-- Color Start -->
+                &lt;!&ndash; Color Start &ndash;&gt;
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
                     <form>
@@ -125,9 +125,9 @@
                         </div>
                     </form>
                 </div>
-                <!-- Color End -->
+                &lt;!&ndash; Color End &ndash;&gt;
 
-                <!-- Size Start -->
+                &lt;!&ndash; Size Start &ndash;&gt;
                 <div class="mb-5">
                     <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
                     <form>
@@ -163,15 +163,15 @@
                         </div>
                     </form>
                 </div>
-                <!-- Size End -->
+                &lt;!&ndash; Size End &ndash;&gt;
             </div>
-            <!-- Shop Sidebar End -->
+            &lt;!&ndash; Shop Sidebar End &ndash;&gt;/-->
 
 
             <!-- Shop Product Start -->
             <div class="col-lg-9 col-md-12">
                 <div class="row pb-3">
-                    <div class="col-12 pb-1">
+<!--                    <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <form action="">
                                 <div class="input-group">
@@ -195,7 +195,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="col-lg-4 col-md-6 col-sm-12 pb-1" th:each="product : ${productResponseDtoList}">
                         <div class="card product-item border-0 mb-4">
@@ -212,11 +212,10 @@
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
                                 <a th:href="@{/product/option_register(id=${product.id})}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>상품 옵션 등록</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 pb-1">
+<!--                    <div class="col-12 pb-1">
                         <nav aria-label="Page navigation">
                             <ul class="pagination justify-content-center mb-3">
                                 <li class="page-item disabled">
@@ -236,7 +235,7 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <!-- Shop Product End -->
