@@ -43,9 +43,7 @@
         <div class="mb-3 row">
             <div class="col-sm-2 col-form-label">이메일</div>
             <div class="input-group mb-3 col">
-                <input type="text" class="form-control" th:name="emailId">
-                <span class="input-group-text">@</span>
-                <input type="text" class="form-control" th:name="emailAddress">
+                <input type="text" class="form-control" th:name="email">
             </div>
         </div>
         <div class="mb-3 row">
@@ -60,14 +58,8 @@
         </div>
         <div class="mb-3 row">
             <div class="col-sm-2 col-form-label">연락처</div>
-            <div class="col-sm-1">
-                <input type="text" class="form-control" th:name="phone1">
-            </div> -
-            <div class="col-sm-1">
-                <input type="text" class="form-control" th:name="phone2">
-            </div> -
-            <div class="col-sm-1">
-                <input type="text" class="form-control" th:name="phone3">
+            <div class="col-sm-3">
+                <input type="text" class="form-control" th:name="phone">
             </div>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">회원가입</button>

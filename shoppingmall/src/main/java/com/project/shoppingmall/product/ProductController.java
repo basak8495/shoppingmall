@@ -126,10 +126,8 @@ public class ProductController {
     @GetMapping("/list")
     public String getProductList(@RequestParam(required = false) String subCategoryId, Model model) {
 
-        model.addAttribute("productResponseDtoList", productService.getProductList());
-
-/*        List<ProductResponseDto> productResponseDto = productService.findBySubCategoryId(subCategoryId);
-        model.addAttribute("product", productResponseDto);*/
+        List<ProductResponseDto> productResponseDtoList = productService.getSubCategoryProductList(subCategoryId);
+        model.addAttribute("productResponseDtoList", productResponseDtoList);
 
         return "product/list";
     }
@@ -141,12 +139,13 @@ public class ProductController {
         User user = userRepository.findByUsername(username);
         model.addAttribute("user", user);
 
-        Product product = productRepository.findById(id).orElse(null);
-        model.addAttribute("product", product);
+        ProductResponseDto productResponseDto = productService.getProduct(id);
+        model.addAttribute("product", productResponseDto);
 
         List<Goods> goodsList = goodsRepository.findAll();
         model.addAttribute("goodsList", goodsList);
 
+        Product product = productRepository.findById(id).orElse(null);
         List<ReviewResponseDto> reviewResponseDtoList = reviewService.getReviewList(product);
         model.addAttribute("reviewResponseDto", reviewResponseDtoList);
 

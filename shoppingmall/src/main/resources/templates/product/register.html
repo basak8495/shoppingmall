@@ -32,6 +32,20 @@
     <!-- Navbar End -->
 
 
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 200px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">상품 등록</h1>
+            <div class="d-inline-flex">
+                <p class="m-0">관리자 전용</p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">상품을 등록할 수 있습니다.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
     <main role="main" class="container">
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
@@ -42,8 +56,11 @@
                         <label for="category" class="form-label">카테고리</label>
                         <select class="form-select" id="category" th:name="category" th:onchange="categoryChange(category.value)" required>
                             <option value=""></option>
+                            <option value="가방">가방</option>
                             <option value="지갑">지갑</option>
-                            <option value="벨트">벨트</option>
+                            <option value="의류">의류</option>
+                            <option value="신발">신발</option>
+                            <option value="잡화">잡화</option>
                         </select>
                     </div>
                     <input type="hidden" id="subCategory" name="subCategory">
@@ -69,7 +86,7 @@
                         <label for="size" class="form-label">사이즈</label>
                         <input type="text" class="form-control" id="size" placeholder="'상품 옵션 등록'에서 가능" disabled>
                     </div>
-                    <h6 class="text-truncate mb-3">상품 메인 이미지</h6>
+                    <h6 class="text-truncate mb-3">상품 메인 이미지 - 사진 한장 첨부 가능</h6>
                     <div class="input-group mb-3">
                         <input type="file" class="form-control mainImageFiles1" id="mainInputGroupFile" multiple>
                         <label for="mainInputGroupFile" class="input-group-text mainImageFiles2">Upload</label>
@@ -112,7 +129,7 @@
                         </ul>
                     </div>
 
-                    <h6 class="text-truncate mb-3">상품 설명 이미지</h6>
+                    <h6 class="text-truncate mb-3">상품 설명 이미지 - 사진 여러장 첨부 가능</h6>
                     <div class="input-group mb-3">
                         <input type="file" class="form-control detailImageFiles1" id="detailInputGroupFile" multiple>
                         <label for="detailInputGroupFile" class="input-group-text detailImageFiles2">Upload</label>
@@ -176,12 +193,21 @@
 
         function categoryChange(category) {
 
-            if (category == "지갑") {
-                options = new Array("", "반지갑", "장지갑", "카드지갑");
-                values = new Array("", "1", "2", "3");
-            } else if (category == "벨트") {
-                options = new Array("", "남성벨트", "여성벨트");
-                values = new Array("", "4", "5");
+            if (category == "가방") {
+                options = new Array("", "토드백/숄더백", "크로스백/바디백", "클러치/파우치", "브리프케이스", "백팩");
+                values = new Array("", "1", "2", "3", "4", "5");
+            } else if (category == "지갑") {
+                options = new Array("", "반지갑/중지갑", "장지갑", "카드지갑/명함지갑");
+                values = new Array("", "11", "12", "13");
+            } else if (category == "의류") {
+                options = new Array("", "티/민소매", "니트/스웨터", "셔츠", "자켓/코트", "패딩/무스탕", "진/바지");
+                values = new Array("", "21", "22", "23", "24", "25", "26");
+            } else if (category == "신발") {
+                options = new Array("", "스니커즈", "슬립온", "로퍼/클리퍼/윙팁", "정장구두", "부츠/워커", "샌들/슬리퍼");
+                values = new Array("", "31", "32", "33", "34", "35", "36");
+            } else if (category == "잡화") {
+                options = new Array("", "벨트", "팔찌/목걸이", "모자", "머플러/스카프", "넥타이");
+                values = new Array("", "41", "42", "43", "44", "45");
             }
 
             //셀렉트 박스의 기본 옵션들을 초기화시킨다.

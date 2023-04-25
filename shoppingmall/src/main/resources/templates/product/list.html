@@ -34,13 +34,8 @@
 
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
-        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Our Shop</h1>
-            <div class="d-inline-flex">
-                <p class="m-0"><a href="">Home</a></p>
-                <p class="m-0 px-2">-</p>
-                <p class="m-0">Shop</p>
-            </div>
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 200px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">상품 리스트</h1>
         </div>
     </div>
     <!-- Page Header End -->
@@ -49,9 +44,9 @@
     <!-- Shop Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
-            <!-- Shop Sidebar Start -->
+            <!--/&lt;!&ndash; Shop Sidebar Start &ndash;&gt;
             <div class="col-lg-3 col-md-12">
-                <!-- Price Start -->
+                &lt;!&ndash; Price Start &ndash;&gt;
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
                     <form>
@@ -87,9 +82,9 @@
                         </div>
                     </form>
                 </div>
-                <!-- Price End -->
+                &lt;!&ndash; Price End &ndash;&gt;
 
-                <!-- Color Start -->
+                &lt;!&ndash; Color Start &ndash;&gt;
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
                     <form>
@@ -125,9 +120,9 @@
                         </div>
                     </form>
                 </div>
-                <!-- Color End -->
+                &lt;!&ndash; Color End &ndash;&gt;
 
-                <!-- Size Start -->
+                &lt;!&ndash; Size Start &ndash;&gt;
                 <div class="mb-5">
                     <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
                     <form>
@@ -163,15 +158,15 @@
                         </div>
                     </form>
                 </div>
-                <!-- Size End -->
+                &lt;!&ndash; Size End &ndash;&gt;
             </div>
-            <!-- Shop Sidebar End -->
+            &lt;!&ndash; Shop Sidebar End &ndash;&gt;/-->
 
 
             <!-- Shop Product Start -->
             <div class="col-lg-9 col-md-12">
                 <div class="row pb-3">
-                    <div class="col-12 pb-1">
+<!--                    <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <form action="">
                                 <div class="input-group">
@@ -195,11 +190,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
+                    </div>-->
                     <div class="col-lg-4 col-md-6 col-sm-12 pb-1" th:each="product : ${productResponseDtoList}">
                         <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                            <div class="card-header position-relative overflow-hidden bg-transparent border p-0">
                                 <img class="img-fluid w-100" alt=""
                                      th:if="${product.productMainImageDtoList.size() > 0 && product.productMainImageDtoList[0].path != null }"
                                      th:src="|/upload/display?fileName=${product.productMainImageDtoList[0].getImageURL()}|">
@@ -207,67 +201,15 @@
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                 <h6 class="text-truncate mb-3" th:text="${product.name}">상품 제목</h6>
                                 <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                    <h6 class="text-muted ml-2" th:text="${product.price + '원'}">상품 가격</h6>
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
                                 <a th:href="@{/product/detail(id=${product.id})}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>자세히 보기</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="/img/product-1.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="img/product-8.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 pb-1">
+<!--                    <div class="col-12 pb-1">
                         <nav aria-label="Page navigation">
                             <ul class="pagination justify-content-center mb-3">
                                 <li class="page-item disabled">
@@ -287,7 +229,7 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <!-- Shop Product End -->

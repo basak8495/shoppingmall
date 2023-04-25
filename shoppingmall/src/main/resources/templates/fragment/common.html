@@ -39,12 +39,15 @@
         <div class="row bg-secondary py-2 px-xl-5">
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-dark" href="">FAQs</a>
+<!--                    <a class="text-dark" href="">FAQs</a>
                     <span class="text-muted px-2">|</span>
                     <a class="text-dark" href="">Help</a>
-                    <span class="text-muted px-2">|</span>
+                    <span class="text-muted px-2">|</span>-->
                     <a class="text-dark" th:href="@{/support/customer_center}">고객센터</a>
-                    <span class="text-muted px-2">|</span>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
                     <a class="text-dark" th:href="@{/product/add_option_color}">옵션 색상 추가</a>
                     <span class="text-muted px-2">|</span>
                     <a class="text-dark" th:href="@{/product/add_option_size}">옵션 사이즈 추가</a>
@@ -56,34 +59,15 @@
                     <a class="text-dark" th:href="@{/orders/all_list}">주문 내역 관리</a>
                 </div>
             </div>
-            <div class="col-lg-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-dark px-2" href="">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-dark px-2" href="">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-dark px-2" href="">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="text-dark px-2" href="">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a class="text-dark pl-2" href="">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
         </div>
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a th:href="@{/}" class="text-decoration-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">명품</span>쇼핑몰</h1>
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Luxury</span>Mall</h1>
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
+<!--                <form action="">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search for products">
                         <div class="input-group-append">
@@ -92,7 +76,7 @@
                                     </span>
                         </div>
                     </div>
-                </form>
+                </form>-->
             </div>
             <div class="col-lg-3 col-6 text-right">
                 <a th:href="@{/cart/list}" class="btn border">
@@ -120,22 +104,55 @@
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div th:fragment="category" class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown">지갑<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <a href="#" class="nav-link" data-toggle="dropdown">가방<i class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                <a href="" th:href="@{/product/list(subCategoryId=1)}" class="dropdown-item">반지갑</a>
-                                <a href="" class="dropdown-item">장지갑</a>
-                                <a href="" class="dropdown-item">카드지갑</a>
+                                <a th:href="@{/product/list(subCategoryId=1)}" class="dropdown-item">토드백/숄더백</a>
+                                <a th:href="@{/product/list(subCategoryId=2)}" class="dropdown-item">크로스백/바디백</a>
+                                <a th:href="@{/product/list(subCategoryId=3)}" class="dropdown-item">클러치/파우치</a>
+                                <a th:href="@{/product/list(subCategoryId=4)}" class="dropdown-item">브리프케이스</a>
+                                <a th:href="@{/product/list(subCategoryId=5)}" class="dropdown-item">백팩</a>
                             </div>
                         </div>
-                        <a href="" class="nav-item nav-link">Shirts</a>
-                        <a href="" class="nav-item nav-link">Jeans</a>
-                        <a href="" class="nav-item nav-link">Swimwear</a>
-                        <a href="" class="nav-item nav-link">Sleepwear</a>
-                        <a href="" class="nav-item nav-link">Sportswear</a>
-                        <a href="" class="nav-item nav-link">Jumpsuits</a>
-                        <a href="" class="nav-item nav-link">Blazers</a>
-                        <a href="" class="nav-item nav-link">Jackets</a>
-                        <a href="" class="nav-item nav-link">Shoes</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">지갑<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a th:href="@{/product/list(subCategoryId=11)}" class="dropdown-item">반지갑/중지갑</a>
+                                <a th:href="@{/product/list(subCategoryId=12)}" class="dropdown-item">장지갑</a>
+                                <a th:href="@{/product/list(subCategoryId=13)}" class="dropdown-item">카드지갑/명함지갑</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">의류<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a th:href="@{/product/list(subCategoryId=21)}" class="dropdown-item">티/민소매</a>
+                                <a th:href="@{/product/list(subCategoryId=22)}" class="dropdown-item">니트/스웨터</a>
+                                <a th:href="@{/product/list(subCategoryId=23)}" class="dropdown-item">셔츠</a>
+                                <a th:href="@{/product/list(subCategoryId=24)}" class="dropdown-item">자켓/코트</a>
+                                <a th:href="@{/product/list(subCategoryId=25)}" class="dropdown-item">패딩/무스탕</a>
+                                <a th:href="@{/product/list(subCategoryId=26)}" class="dropdown-item">진/바지</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">신발<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a th:href="@{/product/list(subCategoryId=31)}" class="dropdown-item">스니커즈</a>
+                                <a th:href="@{/product/list(subCategoryId=32)}" class="dropdown-item">슬립온</a>
+                                <a th:href="@{/product/list(subCategoryId=33)}" class="dropdown-item">로퍼/클리퍼/윙팁</a>
+                                <a th:href="@{/product/list(subCategoryId=34)}" class="dropdown-item">정장구두</a>
+                                <a th:href="@{/product/list(subCategoryId=35)}" class="dropdown-item">부츠/워커</a>
+                                <a th:href="@{/product/list(subCategoryId=36)}" class="dropdown-item">샌들/슬리퍼</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">잡화<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a th:href="@{/product/list(subCategoryId=41)}" class="dropdown-item">벨트</a>
+                                <a th:href="@{/product/list(subCategoryId=42)}" class="dropdown-item">팔찌/목걸이</a>
+                                <a th:href="@{/product/list(subCategoryId=43)}" class="dropdown-item">모자</a>
+                                <a th:href="@{/product/list(subCategoryId=44)}" class="dropdown-item">머플러/스카프</a>
+                                <a th:href="@{/product/list(subCategoryId=45)}" class="dropdown-item">넥타이</a>
+                            </div>
+                        </div>
                     </div>
                 </nav>
             </div>
@@ -149,7 +166,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
+<!--                            <a href="index.html" class="nav-item nav-link active">Home</a>
                             <a href="shop.html" class="nav-item nav-link">Shop</a>
                             <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
                             <div class="nav-item dropdown">
@@ -159,7 +176,7 @@
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="contact.html" class="nav-item nav-link">Contact</a>-->
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             <a th:href="@{/account/login}" class="nav-item nav-link" sec:authorize="!isAuthenticated()">로그인</a>
@@ -175,25 +192,11 @@
                 </nav>
                 <div th:fragment="advertisement" id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active" style="height: 410px;">
-                            <img class="img-fluid" src="img/carousel-1.jpg" alt="Image">
-                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Fashionable Dress</h3>
-                                    <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
-                                </div>
-                            </div>
+                        <div class="carousel-item active" style="height: 610px;">
+                            <img class="img-fluid" src="/img/carousel-4.jpg" alt="Image">
                         </div>
-                        <div class="carousel-item" style="height: 410px;">
-                            <img class="img-fluid" src="img/carousel-2.jpg" alt="Image">
-                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
-                                    <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
-                                </div>
-                            </div>
+                        <div class="carousel-item" style="height: 610px;">
+                            <img class="img-fluid" src="/img/carousel-5.jpg" alt="Image">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
@@ -219,15 +222,16 @@
             <div class="row px-xl-5 pt-5">
                 <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                     <a href="" class="text-decoration-none">
-                        <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Shopper</h1>
+                        <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">Luxury</span>Mall</h1>
                     </a>
-                    <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore amet erat.</p>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+                    <p>본 사이트는 테스트용 사이트이며 실제 명품 쇼핑몰이 아닙니다.</p>
+                    <p>본 사이트에서 상품 구매시 실제 결제되며 다음날 자동 환불처리됩니다.</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>서울 강남구 영동대로 513</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>admin@example.com</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>010-1234-5678</p>
                 </div>
                 <div class="col-lg-8 col-md-12">
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-md-4 mb-5">
                             <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
                             <div class="d-flex flex-column justify-content-start">
@@ -252,7 +256,7 @@
                         </div>
                         <div class="col-md-4 mb-5">
                             <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-<!--                            <form action="">
+                            <form action="">
                                 <div class="form-group">
                                     <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
                                 </div>
@@ -263,15 +267,15 @@
                                 <div>
                                     <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
                                 </div>
-                            </form>-->
+                            </form>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="row border-top border-light mx-xl-5 py-4">
                 <div class="col-md-6 px-xl-0">
                     <p class="mb-md-0 text-center text-md-left text-dark">
-                        &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
+                        &copy; <a class="text-dark font-weight-semi-bold" href="#">Luxury Mall</a>. All Rights Reserved. Designed
                         by
                         <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a>
                     </p>

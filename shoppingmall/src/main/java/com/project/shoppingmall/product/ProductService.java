@@ -113,15 +113,33 @@ public class ProductService {
 
         for(Product product : productList) {
             List<ProductMainImage> productMainImageList = productMainImageRepository.findByProduct(product);
+            List<ProductDetailImage> productDetailImageList = productDetailImageRepository.findByProduct(product);
 
-            ProductResponseDto productResponseDto = entityToDto(product, productMainImageList);
+            ProductResponseDto productResponseDto = entityToDto(product, productMainImageList, productDetailImageList);
             productResponseDtoList.add(productResponseDto);
         }
 
         return productResponseDtoList;
     }
 
-    public ProductResponseDto entityToDto(Product product, List<ProductMainImage> productMainImageList) {
+    public List<ProductResponseDto> getSubCategoryProductList(String subCategoryId) {
+
+        List<Product> productList = productRepository.findBySubCategoryId(subCategoryId);
+
+        List<ProductResponseDto> productResponseDtoList = new ArrayList<>();
+
+        for(Product product : productList) {
+            List<ProductMainImage> productMainImageList = productMainImageRepository.findByProduct(product);
+            List<ProductDetailImage> productDetailImageList = productDetailImageRepository.findByProduct(product);
+
+            ProductResponseDto productResponseDto = entityToDto(product, productMainImageList, productDetailImageList);
+            productResponseDtoList.add(productResponseDto);
+        }
+
+        return productResponseDtoList;
+    }
+
+    public ProductResponseDto entityToDto(Product product, List<ProductMainImage> productMainImageList, List<ProductDetailImage> productDetailImageList) {
         ProductResponseDto productResponseDto = ProductResponseDto.builder()
                 .id(product.getId())
                 .category(product.getCategory())
@@ -139,41 +157,30 @@ public class ProductService {
                     .build();
         }).collect(Collectors.toList());
 
+        List<ProductDetailImageDto> productDetailImageDtoList = productDetailImageList.stream().map(productDetailImage -> {
+            return ProductDetailImageDto.builder()
+                    .imgName(productDetailImage.getImgName())
+                    .path(productDetailImage.getPath())
+                    .uuid(productDetailImage.getUuid())
+                    .build();
+        }).collect(Collectors.toList());
+
         productResponseDto.setProductMainImageDtoList(productMainImageDtoList);
+        productResponseDto.setProductDetailImageDtoList(productDetailImageDtoList);
 
         return productResponseDto;
     }
 
-    @Transactional(readOnly = true)
-    public List<ProductResponseDto> findBySubCategoryId(String subCategoryId) {
+    public ProductResponseDto getProduct(Long id) {
 
-        List<Product> productList = productRepository.findBySubCategoryId(subCategoryId);
+        Product product = productRepository.findById(id).orElse(null);
 
-        List<ProductResponseDto> productResponseDtoList = new ArrayList<>();
+        List<ProductMainImage> productMainImageList = productMainImageRepository.findByProduct(product);
+        List<ProductDetailImage> productDetailImageList = productDetailImageRepository.findByProduct(product);
 
-        for(Product product : productList) {
-            ProductResponseDto productResponseDto = new ProductResponseDto(product);
-            productResponseDtoList.add(productResponseDto);
-        }
+        ProductResponseDto productResponseDto = entityToDto(product, productMainImageList, productDetailImageList);
 
-        return productResponseDtoList;
+        return productResponseDto;
     }
-
-/*    public PageResultDto<ProductResponseDto, Object[]> getList(PageRequestDto pageRequestDto) {
-
-        Pageable pageable = pageRequestDto.getPageable(Sort.by("id").descending());
-
-        Page<Object[]> result = productRepository.getListPage(pageable);
-
-        Function<Object[], ProductResponseDto> fn = (arr -> toDto(
-                (Product)arr[0],
-                (List<ProductImage>)(Arrays.asList((ProductImage)arr[1])),
-                (Double)arr[2],
-                (Long)arr[3])
-        );
-
-        return new PageResultDto<>(result, fn);
-
-    }*/
 
 }
