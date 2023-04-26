@@ -3,7 +3,7 @@
 # Description
 * 개발 환경  
 * IntelliJ  
-  ○ HeidiSQL  
+* HeidiSQL  
   
 ● 사용 기술  
   ○ Java  
