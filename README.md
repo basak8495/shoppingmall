@@ -2,7 +2,7 @@
 1인 쇼핑몰 프로젝트
 # Description
 ● 개발 환경
-  ○ IntelliJ 
+  ○ IntelliJ  
   ○ HeidiSQL
   
 ● 사용 기술
