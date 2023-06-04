@@ -1,5 +1,7 @@
 package com.project.shoppingmall.product_image;
 
+import com.google.cloud.storage.BlobInfo;
+import com.google.cloud.storage.Storage;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -31,8 +34,13 @@ import java.util.UUID;
 @Log4j2
 public class UploadController {
 
-    @Value("${spring.cloud.gcp.storage.bucket}") // application.properties의 변수
+    private Storage storage;
+
+    @Value("${com.project.upload.path}") // application.properties의 변수
     private String uploadPath;
+
+    @Value("${spring.cloud.gcp.storage.bucket}") // application.properties의 변수
+    private String bucketName;
 
     @PostMapping("/imageUpload")
     public ResponseEntity<List<UploadResultDto>> uploadFile(MultipartFile[] uploadFiles) {
@@ -67,6 +75,14 @@ public class UploadController {
                 Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile,100,100);
 
                 resultDTOList.add(new UploadResultDto(fileName,uuid,folderPath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // cloud에 이미지 업로드
+            try {
+                BlobInfo blobInfo = BlobInfo.newBuilder(bucketName, saveName).build();
+                storage.create(blobInfo, Files.readAllBytes(savePath));
             } catch (IOException e) {
                 e.printStackTrace();
             }
