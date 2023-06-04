@@ -43,7 +43,7 @@ public class UploadController {
     private String bucketName;
 
     @PostMapping("/imageUpload")
-    public ResponseEntity<List<UploadResultDto>> uploadFile(MultipartFile[] uploadFiles) {
+    public ResponseEntity<List<UploadResultDto>> uploadFile(MultipartFile[] uploadFiles) throws IOException {
 
         List<UploadResultDto> resultDTOList = new ArrayList<>();
 
@@ -80,12 +80,12 @@ public class UploadController {
             }
 
             // cloud에 이미지 업로드
-            try {
-                BlobInfo blobInfo = BlobInfo.newBuilder(bucketName, saveName).build();
-                storage.create(blobInfo, Files.readAllBytes(savePath));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            BlobInfo blobInfo = storage.create(
+                    BlobInfo.newBuilder(bucketName, saveName)
+                            .build(),
+                    Files.readAllBytes(savePath)
+            );
+
         }
         return new ResponseEntity<>(resultDTOList, HttpStatus.OK);
     }
