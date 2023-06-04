@@ -43,7 +43,6 @@
 
     <div class="container">
         <h4>게시판</h4>
-
         <form action="#" th:action="@{/board/delete}" id="boardList" method="post">
             <!--<input type="hidden" name="_method" value="delete">-->
             <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
@@ -96,9 +95,9 @@
             </nav>-->
 
             <div class="text-right">
-                <a type="button" class="btn btn-secondary" th:href="@{/support/customer_center_board_form}">쓰기</a>
+                <a type="button" class="btn btn-primary" th:href="@{/support/customer_center_board_form}">쓰기</a>
                 <!--<a class="btn btn-secondary" href="javascript:boardDelete();">삭제</a>-->
-                <button th:onclick="boardDelete()" class="w-100 btn btn-primary btn-lg" type="button">삭제하기</button>
+                <button th:onclick="boardDelete()" class="btn btn-primary" type="button">삭제하기</button>
             </div>
         </form>
     </div>

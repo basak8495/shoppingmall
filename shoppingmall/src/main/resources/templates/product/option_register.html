@@ -45,51 +45,52 @@
     </div>
     <!-- Page Header End -->
 
-
-    <div class="row g-5">
-        <div class="col-md-7 col-lg-8">
-            <h4 class="mb-3">상품 옵션 등록</h4>
-            <form class="product-option-register" action="#" th:action="@{/product/option_register/{id}(id=${product.id})}" method="post">
-                <div class="col-4 mb-3">
-                    <label for="category" class="form-label">카테고리</label>
-                    <input type="text" class="form-control" id="category" th:value="${product.category}" readonly>
-                </div>
-                <div class="col-4 mb-3">
-                    <label for="subCategory" class="form-label">세부 카테고리</label>
-                    <input type="text" class="form-control" id="subCategory" th:value="${product.subCategory}" readonly>
-                </div>
-                <div class="col-6 mb-3">
-                    <label for="name" class="form-label">이름</label>
-                    <input type="text" class="form-control" id="name" th:value="${product.name}" readonly>
-                </div>
-                <div class="col-2 mb-3">
-                    <label for="price" class="form-label">가격</label>
-                    <input type="text" class="form-control" id="price" th:value="${product.price}" readonly>
-                </div>
-                <div class="col-4 mb-3">
-                    <label for="productColor" class="form-label">색상</label>
-                    <select class="form-select" id="productColor" name="color" required>
-                        <option value=""></option>
-                        <option th:each="productColorList : ${productColorList}" th:text="${productColorList.color}"></option>
-                    </select>
-                </div>
-                <div class="col-4 mb-3">
-                    <label for="productSize" class="form-label">사이즈</label>
-                    <select class="form-select" id="productSize" name="size" required>
-                        <option value=""></option>
-                        <option th:each="productSizeList : ${productSizeList}" th:text="${productSizeList.size}">사이즈</option>
-                    </select>
-                </div>
-                <div class="col-2 mb-3">
-                    <label for="quantity" class="form-label">수량</label>
-                    <input type="text" class="form-control" id="quantity" name="quantity" required>
-                </div>
-                <!--                    <div class="col-3">
-                                        <label for="discountRate" class="form-label">할인율</label>
-                                        <input type="text" class="form-control" id="discountRate" th:field="*{discountRate}" required>
-                                    </div>-->
-                <button class="w-100 btn btn-primary btn-lg" type="submit">등록하기</button>
-            </form>
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">상품 옵션 등록</h4>
+                <form class="product-option-register" action="#" th:action="@{/product/option_register/{id}(id=${product.id})}" method="post">
+                    <div class="col-4 mb-3">
+                        <label for="category" class="form-label">카테고리</label>
+                        <input type="text" class="form-control" id="category" th:value="${product.category}" readonly>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <label for="subCategory" class="form-label">세부 카테고리</label>
+                        <input type="text" class="form-control" id="subCategory" th:value="${product.subCategory}" readonly>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="name" class="form-label">이름</label>
+                        <input type="text" class="form-control" id="name" th:value="${product.name}" readonly>
+                    </div>
+                    <div class="col-2 mb-3">
+                        <label for="price" class="form-label">가격</label>
+                        <input type="text" class="form-control" id="price" th:value="${product.price}" readonly>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <label for="productColor" class="form-label">색상</label>
+                        <select class="form-select" id="productColor" name="color" required>
+                            <option value=""></option>
+                            <option th:each="productColorList : ${productColorList}" th:text="${productColorList.color}"></option>
+                        </select>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <label for="productSize" class="form-label">사이즈</label>
+                        <select class="form-select" id="productSize" name="size" required>
+                            <option value=""></option>
+                            <option th:each="productSizeList : ${productSizeList}" th:text="${productSizeList.size}">사이즈</option>
+                        </select>
+                    </div>
+                    <div class="col-2 mb-3">
+                        <label for="quantity" class="form-label">수량</label>
+                        <input type="text" class="form-control" id="quantity" name="quantity" required>
+                    </div>
+                    <!--                    <div class="col-3">
+                                            <label for="discountRate" class="form-label">할인율</label>
+                                            <input type="text" class="form-control" id="discountRate" th:field="*{discountRate}" required>
+                                        </div>-->
+                    <button class="btn btn-primary" type="submit">등록하기</button>
+                </form>
+            </div>
         </div>
     </div>
 

@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "stone-poetry-276214",
+  "private_key_id": "1a8b8182d624b2c326cc3480d6a4f0a930c1ad3d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCtGVh/xEYtcwFQ\nGCOC7KiHPS91SyEtoQsW76SvXX9a5vB/IIz1pr1s0Le15itlSFzEe2cpxQo5ODtP\nQVgPg4/HNaADTM9Uzjdv5sC9PbjnEg5MHYwjNCPmcq3AGU8zIPXElhKcf6X+dokH\neivY8yemQdI/8i+1K+LlIlcYqxbs0kcRSI9sZC0O1tQ2EIzNt++4UEtBw1T5o2jC\nqLKcXW1ZyWi3i9FSS1i0/NTUUChFyW2E5BKdafOKXDevB5dsOUaMzh0LLZsTHEKs\nRlsiKrPYZ0Kg60N5aayFa61aNi4WIcRvJfQnReF0u0+jBa0FxTu/MEedjo6rHOs1\nQl57S72fAgMBAAECggEAFtM98LxvFo97hQC8hLHz4mq73Hx3gl6h1DiYdN61gZqX\nQY7cwjMQ97gpVA08UVgykglwXTkpc8nJmatU/dgMIv7Gu/iqaZU3CS9FNg8IApbx\nF1yuvcuiekD1TrHnrXxzUU9gDTk7KGv1U2zq5ZThTb07M18aUbUDmnxQk3pSr7qD\na/S6fgAhD6s47DQWcTgqvo3Fje0BXIUlXuQFJgbhwUKGE78ctoPY9PZAZ5EY8LAf\nJvdASrahIdcHjMC72UVXIDMe/ottIqZ1ulxzY3+ZWjQ4qofIkS/95NSadAKo9AEE\neORj3NsEmDL57qnG3csnA+8G+hDdhSSPfIKjik4vBQKBgQDsbx+MJNnDH4XZrm3d\nnDuIB1S16aMx3mzBHOVFTqflx3l9i7y3SY8MmLZAfE2NwrqDsfurxOVsp4955ip+\nigmTRUHt6aSaWzYdMUfPp+vgOTsquG84FMacu9EVz1X9lx8ZSscWv1NLDN6qqXNg\nNNHIn4PRZaPwEs1IA1tCYKCkBQKBgQC7bHakbvxJ/zm8hT7dOo/xVaiPjU13l2Eo\nYS2/uWOZDhM/+s0q4Y/S2Ra2TCpsDJUyHzmwwIt7q2Jvsa4P7B6Ob82n4/12Lrms\n7bmktpLfW8Mbb4x6Ri6y4lRfDWXUz9z/iqn/NrylF6td9q6UYRKrIkyMirLbIAXq\nfIFlgzFQUwKBgQCBa6qXKizRdFXufF7DahvkMC8cjNG6IIjjhI+zyoR5cSF9qZoZ\nsnhNauKIlgJV0PwLzsd2lQcI3QfasDUeoyzuooCeXMCvhbIvdKRcdQzW5j0O+3pV\n9nlpnh2rlJz7fVeWnqowN3a+pELWpH71cLRM35RmcP62EXSxMLUptn74iQKBgQCY\nmkKrthZDZcUr404BMTqcZINfhszJj/8yspVeYuNebqBr2piMzqWdJtcgTTnJSiF8\ncwI1EUFAy5XVndU876MdlJjdl3v7ayYRUGp0W5eQt5VP1G6L7HL/gdryneUI9spZ\nYxzxSS8mOPR2CHGzLKrXnpC3agMg+Zz3hLKS5dQUMwKBgC7ASp+gOdxKyq534+7D\nOUxRz2RadW1P8WRg+fefvTlwzGoNx8jqekg6eCbEAMlCJGmGQ0k1GxfsngdIVTEq\n/v++1z5C2B+WNHzNAANR3KAXrKIIh810A9AHZOwDVrNwLRvUjpJxltkkIKii3gq+\nm5OUfp5AkR+WsGcUX5fZID5G\n-----END PRIVATE KEY-----\n",
+  "client_email": "springboot-storage-access@stone-poetry-276214.iam.gserviceaccount.com",
+  "client_id": "108635185929341832948",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/springboot-storage-access%40stone-poetry-276214.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

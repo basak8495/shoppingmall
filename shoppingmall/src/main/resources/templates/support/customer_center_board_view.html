@@ -56,8 +56,8 @@
             </div>
 
             <div class="text-right">
-                <a class="btn btn-secondary" th:href="@{/support/customer_center}">목록</a>
-                <a class="btn btn-secondary" th:href="@{/support/customer_center_board_form(id=${customerBoardResponseDto.id})}">수정(안됨)</a>
+                <a class="btn btn-primary" th:href="@{/support/customer_center}">목록</a>
+                <a class="btn btn-secondary" th:href="@{/support/customer_center_board_form(id=${customerBoardResponseDto.id})}">수정(테스트)</a>
                 <!--<button type="submit" class="btn btn-secondary"
                         sec:authorize="hasRole('ROLE_USER')" th:onclick="|deleteBoard(*{id})|">삭제</button>-->
             </div>
