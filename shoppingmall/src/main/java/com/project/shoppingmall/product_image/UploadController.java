@@ -31,7 +31,7 @@ import java.util.UUID;
 @Log4j2
 public class UploadController {
 
-    @Value("${com.project.upload.path}") // application.properties의 변수
+    @Value("${spring.cloud.gcp.storage.bucket}") // application.properties의 변수
     private String uploadPath;
 
     @PostMapping("/imageUpload")
