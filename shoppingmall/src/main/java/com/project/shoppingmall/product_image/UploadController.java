@@ -1,5 +1,7 @@
 package com.project.shoppingmall.product_image;
 
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import lombok.extern.log4j.Log4j2;
@@ -15,10 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,8 +33,6 @@ import java.util.UUID;
 @Log4j2
 public class UploadController {
 
-    private Storage storage;
-
     @Value("${com.project.upload.path}") // application.properties의 변수
     private String uploadPath;
 
@@ -43,7 +40,7 @@ public class UploadController {
     private String bucketName;
 
     @PostMapping("/imageUpload")
-    public ResponseEntity<List<UploadResultDto>> uploadFile(MultipartFile[] uploadFiles) throws IOException {
+    public ResponseEntity<List<UploadResultDto>> uploadFile(MultipartFile[] uploadFiles) {
 
         List<UploadResultDto> resultDTOList = new ArrayList<>();
 
@@ -75,16 +72,10 @@ public class UploadController {
                 Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile,100,100);
 
                 resultDTOList.add(new UploadResultDto(fileName,uuid,folderPath));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            // cloud에 이미지 업로드
-            BlobInfo blobInfo = storage.create(
-                    BlobInfo.newBuilder(bucketName, saveName)
-                            .build(),
-                    Files.readAllBytes(savePath)
-            );
 
         }
         return new ResponseEntity<>(resultDTOList, HttpStatus.OK);
