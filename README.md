@@ -27,11 +27,12 @@
   
 * 서버 배포  
   * CloudType을 이용한 서버 배포 환경 구성  
-  * Google cloud storage를 이용한 이미지 저장 공간 구성 (미완성)  
+  * Google cloud storage를 이용한 이미지 저장 공간 구성  
 
 * 접속 주소  
   * https://port-0-shoppingmall-xiy3e2blhf5b8bs.sel4.cloudtype.app/  
   * Test ID: admin / Test Password: 1234  
+  * Test ID: user01 / Test Password: 1234  
+  * Test ID: user02 / Test Password: 1234  
   * 주의사항  
     * 본 사이트에서 상품 구매시 실제 결제되며 다음날 자동 환불처리됩니다.  
-    * 이미지 저장 공간 미완성으로 인해 업로드가 정상적으로 이루어지지 않고 이미지가 보이지 않을 수 있습니다.  
