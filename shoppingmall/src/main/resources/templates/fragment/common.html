@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
+                <div class="d-inline-flex align-items-center" sec:authorize="hasRole('ROLE_ADMIN')">
                     <a class="text-dark" th:href="@{/product/add_option_color}">옵션 색상 추가</a>
                     <span class="text-muted px-2">|</span>
                     <a class="text-dark" th:href="@{/product/add_option_size}">옵션 사이즈 추가</a>
