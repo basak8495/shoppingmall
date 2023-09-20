@@ -17,9 +17,9 @@
   * MySQL  
   
 * 구현 기능  
-  * Spring Security를 이용한 회원가입, 로그인  
+  * 회원가입, 로그인  
   * 고객센터 게시판, 댓글  
-  * 상품, 상품 옵션 등록  
+  * 관리자 페이지 (옵션 추가, 상품 등록, 상품 옵션 등록, 주문 내역 관리)  
   * 장바구니 (추가, 수량조절, 삭제)  
   * KG이니시스 API를 이용한 결제 구현  
   * 주문 내역  
@@ -31,8 +31,9 @@
 
 * 접속 주소  
   * https://port-0-shoppingmall-xiy3e2blhf5b8bs.sel4.cloudtype.app/  
-  * Test ID: admin / Test Password: 1234  
+  * Test ID: admin / Test Password: 1234 / (관리자 페이지 이용가능)  
   * Test ID: user01 / Test Password: 1234  
   * Test ID: user02 / Test Password: 1234  
   * 주의사항  
+    * 본 사이트의 모든 기능은 자유롭게 사용 가능합니다.  
     * 본 사이트에서 상품 구매시 실제 결제되며 다음날 자동 환불처리됩니다.  
